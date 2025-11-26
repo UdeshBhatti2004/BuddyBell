@@ -1,0 +1,1123 @@
+/* ----------------------------------
+ ✅ Imports
+---------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=Fredoka:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'DoxFont';
+  src: url('../public/fonts/dox/dox.ttf') format('truetype');
+
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+
+
+html, body {
+  font-family: 'Sora', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  
+}
+
+.chat-username {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: #333;
+}
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
+
+/* ----------------------------------
+ ✅ Global Reset
+---------------------------------- */
+/* html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  background: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+} */
+
+.fascinate {
+  font-family: 'Fascinate Inline', cursive;
+}
+
+/* ----------------------------------
+ ✅ Chat Container (Desktop Defaults)
+---------------------------------- */
+.str-chat__channel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  padding: 40px;
+  background-color: #0d0d0d; /* Deep background for contrast */
+  z-index: 1;
+  isolation: isolate;
+}
+
+
+/* Morphing Animation */
+@keyframes morph {
+  0% {
+    border-radius: 43% 57% 62% 38% / 40% 45% 55% 60%;
+    transform: scale(1);
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 70% 30% 60% 40%;
+    transform: scale(1.05);
+  }
+  100% {
+    border-radius: 43% 57% 62% 38% / 40% 45% 55% 60%;
+    transform: scale(1);
+  }
+}
+
+@keyframes morphAlt {
+  0% {
+    border-radius: 60% 40% 30% 70% / 70% 30% 60% 40%;
+    transform: scale(1);
+  }
+  50% {
+    border-radius: 43% 57% 62% 38% / 40% 45% 55% 60%;
+    transform: scale(1.08);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 70% 30% 60% 40%;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+
+.str-chat__container {
+  max-width: 1000px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+
+/* ✅ Cleaned Scrollbar Styling */
+.str-chat__list::-webkit-scrollbar {
+  width: 6px;
+
+}
+.str-chat__list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* ✅ Hide Stream notifications */
+.str-chat__list-notifications {
+  display: none;
+}
+
+/* ----------------------------------
+ ✅ Mobile View
+---------------------------------- */
+
+@media (max-width: 768px) {
+  .str-chat__channel {
+    padding: 0;
+    margin: 0;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* changed */
+    align-items: stretch;
+    height: 93vh; /* use full height */
+    overflow: hidden;
+  }
+
+  .str-chat__container {
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .str-chat__list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    padding-bottom: 20px; /* Ensure input isn't covered */
+  }
+
+  .str-chat__input-flat,
+  .str-chat__input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: white;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+
+  input,
+  textarea {
+    font-size: 16px;
+  }
+
+  .str-chat__channel::before,
+  .str-chat__channel::after {
+    display: none !important;
+  }
+/* 
+  .str-chat__channel {
+    background: #ffffff !important; 
+  } */
+}
+/* .str-chat__channel-header{
+  background-color: red;
+}
+.str-chat__avatar .str-chat__avatar-image{
+  background-color:pink ;
+}
+
+
+.str-chat__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: blue;
+  
+} */
+
+/* Layout only, no colors */
+.str-chat__channel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.str-chat__container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.str-chat__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.str-chat__input-flat,
+.str-chat__input {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .str-chat__channel {
+    height: 93vh;
+  }
+
+  .str-chat__input-flat,
+  .str-chat__input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+}
+
+/* -----------------------------
+   Channel Header Themes
+----------------------------- */
+
+/* Light Theme */
+.light .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #1a202c;
+}
+
+/* Dark Theme */
+.dark .str-chat__channel-header {
+  background-color: #1f2937;
+  color: #ec4899;
+}
+
+/* Cupcake Theme */
+.cupcake .str-chat__channel-header {
+  background-color: #f5f5f4;
+  color: #291334;
+}
+
+/* Forest Theme */
+.forest .str-chat__channel-header {
+  background-color: #1f1d1d;
+  color: #70c217;
+}
+
+/* Bumblebee Theme */
+.bumblebee .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #f0d50c;
+}
+
+/* Emerald Theme */
+.emerald .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #3b82f6;
+}
+
+/* Corporate Theme */
+.corporate .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #7b92b2;
+}
+
+/* Synthwave Theme */
+.synthwave .str-chat__channel-header {
+  background-color: #2d1b69;
+  color: #58c7f3;
+}
+
+/* Retro Theme */
+.retro .str-chat__channel-header {
+  background-color: #e4d8b4;
+  color: #6aaa64;
+}
+
+/* Cyberpunk Theme */
+.cyberpunk .str-chat__channel-header {
+  background-color: #ffee00;
+  color: #75d1f0;
+}
+
+/* Valentine Theme */
+.valentine .str-chat__channel-header {
+  background-color: #f0d6e8;
+  color: #a991f7;
+}
+
+/* Halloween Theme */
+.halloween .str-chat__channel-header {
+  background-color: #0d0d0d;
+  color: #ff7800;
+}
+
+/* Garden Theme */
+.garden .str-chat__channel-header {
+  background-color: #e9e7e7;
+  color: #16a34a;
+}
+
+/* Aqua Theme */
+.aqua .str-chat__channel-header {
+  background-color: #193549;
+  color: #9059ff;
+}
+
+/* Lofi Theme */
+.lofi .str-chat__channel-header {
+  background-color: #0f0f0f;
+  color: #232323;
+}
+
+/* Pastel Theme */
+.pastel .str-chat__channel-header {
+  background-color: #f7f3f5;
+  color: #a1e3d8;
+}
+
+/* Fantasy Theme */
+.fantasy .str-chat__channel-header {
+  background-color: #ffe7d6;
+  color: #3b82f6;
+}
+
+/* Wireframe Theme */
+.wireframe .str-chat__channel-header {
+  background-color: #e6e6e6;
+  color: #b3b3b3;
+}
+
+/* Black Theme */
+.black .str-chat__channel-header {
+  background-color: #000000;
+  color: #313131;
+}
+
+/* Luxury Theme */
+.luxury .str-chat__channel-header {
+  background-color: #171618;
+  color: #94589c;
+}
+
+/* Dracula Theme */
+.dracula .str-chat__channel-header {
+  background-color: #282a36;
+  color: #bd93f9;
+}
+
+/* CMYK Theme */
+.cmyk .str-chat__channel-header {
+  background-color: #f0f0f0;
+  color: #ec4899;
+}
+
+/* Autumn Theme */
+.autumn .str-chat__channel-header {
+  background-color: #f2f2f2;
+  color: #f28c18;
+}
+
+/* Business Theme */
+.business .str-chat__channel-header {
+  background-color: #f5f5f5;
+  color: #3b82f6;
+}
+
+/* Acid Theme */
+.acid .str-chat__channel-header {
+  background-color: #110e0e;
+  color: #ff7a00;
+}
+
+/* Lemonade Theme */
+.lemonade .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #f5d742;
+}
+
+/* Night Theme */
+.night .str-chat__channel-header {
+  background-color: #0f172a;
+  color: #818cf8;
+}
+
+/* Coffee Theme */
+.coffee .str-chat__channel-header {
+  background-color: #20161f;
+  color: #497174;
+}
+
+/* Winter Theme */
+.winter .str-chat__channel-header {
+  background-color: #ffffff;
+  color: #d946ef;
+}
+
+/* Dim Theme */
+.dim .str-chat__channel-header {
+  background-color: #1c1c27;
+  color: #ff5a5f;
+}
+
+/* Nord Theme */
+.nord .str-chat__channel-header {
+  background-color: #eceff4;
+  color: #81a1c1;
+}
+
+/* Sunset Theme */
+.sunset .str-chat__channel-header {
+  background-color: #1e293b;
+  color: #ec4899;
+}
+/* -----------------------------
+   Avatar Image Themes
+----------------------------- */
+
+/* Light Theme */
+.light .str-chat__avatar .str-chat__avatar-image {
+  background-color: #5a67d8;
+}
+
+/* Dark Theme */
+.dark .str-chat__avatar .str-chat__avatar-image {
+  background-color: #8b5cf6;
+}
+
+/* Cupcake Theme */
+.cupcake .str-chat__avatar .str-chat__avatar-image {
+  background-color: #65c3c8;
+}
+
+/* Forest Theme */
+.forest .str-chat__avatar .str-chat__avatar-image {
+  background-color: #3ebc96;
+}
+
+/* Bumblebee Theme */
+.bumblebee .str-chat__avatar .str-chat__avatar-image {
+  background-color: #f8e36f;
+}
+
+/* Emerald Theme */
+.emerald .str-chat__avatar .str-chat__avatar-image {
+  background-color: #66cc8a;
+}
+
+/* Corporate Theme */
+.corporate .str-chat__avatar .str-chat__avatar-image {
+  background-color: #4b6bfb;
+}
+
+/* Synthwave Theme */
+.synthwave .str-chat__avatar .str-chat__avatar-image {
+  background-color: #e779c1;
+}
+
+/* Retro Theme */
+.retro .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ea6962;
+}
+
+/* Cyberpunk Theme */
+.cyberpunk .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ff7598;
+}
+
+/* Valentine Theme */
+.valentine .str-chat__avatar .str-chat__avatar-image {
+  background-color: #e96d7b;
+}
+
+/* Halloween Theme */
+.halloween .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ff7800;
+}
+
+/* Garden Theme */
+.garden .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ec4899;
+}
+
+/* Aqua Theme */
+.aqua .str-chat__avatar .str-chat__avatar-image {
+  background-color: #4cd4e3;
+}
+
+/* Lofi Theme */
+.lofi .str-chat__avatar .str-chat__avatar-image {
+  background-color: #1a1919;
+}
+
+/* Pastel Theme */
+.pastel .str-chat__avatar .str-chat__avatar-image {
+  background-color: #d1c1d7;
+}
+
+/* Fantasy Theme */
+.fantasy .str-chat__avatar .str-chat__avatar-image {
+  background-color: #a21caf;
+}
+
+/* Wireframe Theme */
+.wireframe .str-chat__avatar .str-chat__avatar-image {
+  background-color: #b3b3b3;
+}
+
+/* Black Theme */
+.black .str-chat__avatar .str-chat__avatar-image {
+  background-color: #191919;
+}
+
+/* Luxury Theme */
+.luxury .str-chat__avatar .str-chat__avatar-image {
+  background-color: #1e293b;
+}
+
+/* Dracula Theme */
+.dracula .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ff79c6;
+}
+
+/* CMYK Theme */
+.cmyk .str-chat__avatar .str-chat__avatar-image {
+  background-color: #0891b2;
+}
+
+/* Autumn Theme */
+.autumn .str-chat__avatar .str-chat__avatar-image {
+  background-color: #8c1f11;
+}
+
+/* Business Theme */
+.business .str-chat__avatar .str-chat__avatar-image {
+  background-color: #1e40af;
+}
+
+/* Acid Theme */
+.acid .str-chat__avatar .str-chat__avatar-image {
+  background-color: #ff00f2;
+}
+
+/* Lemonade Theme */
+.lemonade .str-chat__avatar .str-chat__avatar-image {
+  background-color: #67e8f9;
+}
+
+/* Night Theme */
+.night .str-chat__avatar .str-chat__avatar-image {
+  background-color: #38bdf8;
+}
+
+/* Coffee Theme */
+.coffee .str-chat__avatar .str-chat__avatar-image {
+  background-color: #dd9866;
+}
+
+/* Winter Theme */
+.winter .str-chat__avatar .str-chat__avatar-image {
+  background-color: #0284c7;
+}
+
+/* Dim Theme */
+.dim .str-chat__avatar .str-chat__avatar-image {
+  background-color: #10b981;
+}
+
+/* Nord Theme */
+.nord .str-chat__avatar .str-chat__avatar-image {
+  background-color: #5e81ac;
+}
+
+/* Sunset Theme */
+.sunset .str-chat__avatar .str-chat__avatar-image {
+  background-color: #f5734c;
+}
+/* -----------------------------
+   Chat List & Messages Themes
+----------------------------- */
+
+/* Light Theme */
+.light .str-chat__list,
+.light .str-chat__message-bubble,
+.light .str-chat__message-text {
+  background-color: #ffffff;
+  color: #1a202c;
+}
+
+/* Dark Theme */
+.dark .str-chat__list,
+.dark .str-chat__message-bubble,
+.dark .str-chat__message-text {
+  background-color: #1f2937;
+  color: #ec4899;
+}
+
+/* Cupcake Theme */
+.cupcake .str-chat__list,
+.cupcake .str-chat__message-bubble,
+.cupcake .str-chat__message-text {
+  background-color: #f5f5f4;
+  color: #291334;
+}
+
+/* Forest Theme */
+.forest .str-chat__list,
+.forest .str-chat__message-bubble,
+.forest .str-chat__message-text {
+  background-color: #1f1d1d;
+  color: #70c217;
+}
+
+/* Bumblebee Theme */
+.bumblebee .str-chat__list,
+.bumblebee .str-chat__message-bubble,
+.bumblebee .str-chat__message-text {
+  background-color: #ffffff;
+  color: #f0d50c;
+}
+
+/* Emerald Theme */
+.emerald .str-chat__list,
+.emerald .str-chat__message-bubble,
+.emerald .str-chat__message-text {
+  background-color: #ffffff;
+  color: #3b82f6;
+}
+
+/* Corporate Theme */
+.corporate .str-chat__list,
+.corporate .str-chat__message-bubble,
+.corporate .str-chat__message-text {
+  background-color: #ffffff;
+  color: #4b6bfb;
+}
+
+/* Synthwave Theme */
+.synthwave .str-chat__list,
+.synthwave .str-chat__message-bubble,
+.synthwave .str-chat__message-text {
+  background-color: #2d1b69;
+  color: #e779c1;
+}
+
+/* Retro Theme */
+.retro .str-chat__list,
+.retro .str-chat__message-bubble,
+.retro .str-chat__message-text {
+  background-color: #e4d8b4;
+  color: #6aaa64;
+}
+
+/* Cyberpunk Theme */
+.cyberpunk .str-chat__list,
+.cyberpunk .str-chat__message-bubble,
+.cyberpunk .str-chat__message-text {
+  background-color: #ffee00;
+  color: #ff7598;
+}
+
+/* Valentine Theme */
+.valentine .str-chat__list,
+.valentine .str-chat__message-bubble,
+.valentine .str-chat__message-text {
+  background-color: #f0d6e8;
+  color: #e96d7b;
+}
+
+/* Halloween Theme */
+.halloween .str-chat__list,
+.halloween .str-chat__message-bubble,
+.halloween .str-chat__message-text {
+  background-color: #0d0d0d;
+  color: #ff7800;
+}
+
+/* Garden Theme */
+.garden .str-chat__list,
+.garden .str-chat__message-bubble,
+.garden .str-chat__message-text {
+  background-color: #e9e7e7;
+  color: #16a34a;
+}
+
+/* Aqua Theme */
+.aqua .str-chat__list,
+.aqua .str-chat__message-bubble,
+.aqua .str-chat__message-text {
+  background-color: #193549;
+  color: #4cd4e3;
+}
+
+/* Lofi Theme */
+.lofi .str-chat__list,
+.lofi .str-chat__message-bubble,
+.lofi .str-chat__message-text {
+  background-color: #0f0f0f;
+  color: #818181;
+}
+
+/* Pastel Theme */
+.pastel .str-chat__list,
+.pastel .str-chat__message-bubble,
+.pastel .str-chat__message-text {
+  background-color: #f7f3f5;
+  color: #4a98f1;
+}
+
+/* Fantasy Theme */
+.fantasy .str-chat__list,
+.fantasy .str-chat__message-bubble,
+.fantasy .str-chat__message-text {
+  background-color: #ffe7d6;
+  color: #3b82f6;
+}
+
+/* Wireframe Theme */
+.wireframe .str-chat__list,
+.wireframe .str-chat__message-bubble,
+.wireframe .str-chat__message-text {
+  background-color: #e6e6e6;
+  color: #888888;
+}
+
+/* Black Theme */
+.black .str-chat__list,
+.black .str-chat__message-bubble,
+.black .str-chat__message-text {
+  background-color: #000000;
+  color: #313131;
+}
+
+/* Luxury Theme */
+.luxury .str-chat__list,
+.luxury .str-chat__message-bubble,
+.luxury .str-chat__message-text {
+  background-color: #171618;
+  color: #94589c;
+}
+
+/* Dracula Theme */
+.dracula .str-chat__list,
+.dracula .str-chat__message-bubble,
+.dracula .str-chat__message-text {
+  background-color: #282a36;
+  color: #bd93f9;
+}
+
+/* CMYK Theme */
+.cmyk .str-chat__list,
+.cmyk .str-chat__message-bubble,
+.cmyk .str-chat__message-text {
+  background-color: #f0f0f0;
+  color: #ec4899;
+}
+
+/* Autumn Theme */
+.autumn .str-chat__list,
+.autumn .str-chat__message-bubble,
+.autumn .str-chat__message-text {
+  background-color: #f2f2f2;
+  color: #f28c18;
+}
+
+/* Business Theme */
+.business .str-chat__list,
+.business .str-chat__message-bubble,
+.business .str-chat__message-text {
+  background-color: #f5f5f5;
+  color: #3b82f6;
+}
+
+/* Acid Theme */
+.acid .str-chat__list,
+.acid .str-chat__message-bubble,
+.acid .str-chat__message-text {
+  background-color: #110e0e;
+  color: #ff00f2;
+}
+
+/* Lemonade Theme */
+.lemonade .str-chat__list,
+.lemonade .str-chat__message-bubble,
+.lemonade .str-chat__message-text {
+  background-color: #ffffff;
+  color: #f5d742;
+}
+
+/* Night Theme */
+.night .str-chat__list,
+.night .str-chat__message-bubble,
+.night .str-chat__message-text {
+  background-color: #0f172a;
+  color: #818cf8;
+}
+
+/* Coffee Theme */
+.coffee .str-chat__list,
+.coffee .str-chat__message-bubble,
+.coffee .str-chat__message-text {
+  background-color: #20161f;
+  color: #497174;
+}
+
+/* Winter Theme */
+.winter .str-chat__list,
+.winter .str-chat__message-bubble,
+.winter .str-chat__message-text {
+  background-color: #ffffff;
+  color: #0284c7;
+}
+
+/* Dim Theme */
+.dim .str-chat__list,
+.dim .str-chat__message-bubble,
+.dim .str-chat__message-text {
+  background-color: #1c1c27;
+  color: #10b981;
+}
+
+/* Nord Theme */
+.nord .str-chat__list,
+.nord .str-chat__message-bubble,
+.nord .str-chat__message-text {
+  background-color: #eceff4;
+  color: #5e81ac;
+}
+
+/* Sunset Theme */
+.sunset .str-chat__list,
+.sunset .str-chat__message-bubble,
+.sunset .str-chat__message-text {
+  background-color: #1e293b;
+  color: #ec4899;
+}
+
+
+/* Light Theme */
+.light .str-chat,
+.light .str-chat__channel {
+  background-color: #ffffff;
+  color: #1a202c;
+}
+
+/* Dark Theme */
+.dark .str-chat,
+.dark .str-chat__channel {
+  background-color: #1f2937;
+  color: #ec4899;
+}
+
+/* Cupcake Theme */
+.cupcake .str-chat,
+.cupcake .str-chat__channel {
+  background-color: #f5f5f4;
+  color: #291334;
+}
+
+/* Forest Theme */
+.forest .str-chat,
+.forest .str-chat__channel {
+  background-color: #1f1d1d;
+  color: #70c217;
+}
+
+/* Bumblebee Theme */
+.bumblebee .str-chat,
+.bumblebee .str-chat__channel {
+  background-color: #ffffff;
+  color: #f0d50c;
+}
+
+/* Emerald Theme */
+.emerald .str-chat,
+.emerald .str-chat__channel {
+  background-color: #ffffff;
+  color: #3b82f6;
+}
+
+/* Corporate Theme */
+.corporate .str-chat,
+.corporate .str-chat__channel {
+  background-color: #ffffff;
+  color: #4b6bfb;
+}
+
+/* Synthwave Theme */
+.synthwave .str-chat,
+.synthwave .str-chat__channel {
+  background-color: #2d1b69;
+  color: #e779c1;
+}
+
+/* Retro Theme */
+.retro .str-chat,
+.retro .str-chat__channel {
+  background-color: #e4d8b4;
+  color: #6aaa64;
+}
+
+/* Cyberpunk Theme */
+.cyberpunk .str-chat,
+.cyberpunk .str-chat__channel {
+  background-color: #ffee00;
+  color: #ff7598;
+}
+
+/* Valentine Theme */
+.valentine .str-chat,
+.valentine .str-chat__channel {
+  background-color: #f0d6e8;
+  color: #e96d7b;
+}
+
+/* Halloween Theme */
+.halloween .str-chat,
+.halloween .str-chat__channel {
+  background-color: #0d0d0d;
+  color: #ff7800;
+}
+
+/* Garden Theme */
+.garden .str-chat,
+.garden .str-chat__channel {
+  background-color: #e9e7e7;
+  color: #16a34a;
+}
+
+/* Aqua Theme */
+.aqua .str-chat,
+.aqua .str-chat__channel {
+  background-color: #193549;
+  color: #4cd4e3;
+}
+
+/* Lofi Theme */
+.lofi .str-chat,
+.lofi .str-chat__channel {
+  background-color: #0f0f0f;
+  color: #818181;
+}
+
+/* Pastel Theme */
+.pastel .str-chat,
+.pastel .str-chat__channel {
+  background-color: #f7f3f5;
+  color: #4a98f1;
+}
+
+/* Fantasy Theme */
+.fantasy .str-chat,
+.fantasy .str-chat__channel {
+  background-color: #ffe7d6;
+  color: #3b82f6;
+}
+
+/* Wireframe Theme */
+.wireframe .str-chat,
+.wireframe .str-chat__channel {
+  background-color: #e6e6e6;
+  color: #888888;
+}
+
+/* Black Theme */
+.black .str-chat,
+.black .str-chat__channel {
+  background-color: #000000;
+  color: #313131;
+}
+
+/* Luxury Theme */
+.luxury .str-chat,
+.luxury .str-chat__channel {
+  background-color: #171618;
+  color: #94589c;
+}
+
+/* Dracula Theme */
+.dracula .str-chat,
+.dracula .str-chat__channel {
+  background-color: #282a36;
+  color: #bd93f9;
+}
+
+/* CMYK Theme */
+.cmyk .str-chat,
+.cmyk .str-chat__channel {
+  background-color: #f0f0f0;
+  color: #ec4899;
+}
+
+/* Autumn Theme */
+.autumn .str-chat,
+.autumn .str-chat__channel {
+  background-color: #f2f2f2;
+  color: #f28c18;
+}
+
+/* Business Theme */
+.business .str-chat,
+.business .str-chat__channel {
+  background-color: #f5f5f5;
+  color: #3b82f6;
+}
+
+/* Acid Theme */
+.acid .str-chat,
+.acid .str-chat__channel {
+  background-color: #110e0e;
+  color: #ff00f2;
+}
+
+/* Lemonade Theme */
+.lemonade .str-chat,
+.lemonade .str-chat__channel {
+  background-color: #ffffff;
+  color: #f5d742;
+}
+
+/* Night Theme */
+.night .str-chat,
+.night .str-chat__channel {
+  background-color: #0f172a;
+  color: #818cf8;
+}
+
+/* Coffee Theme */
+.coffee .str-chat,
+.coffee .str-chat__channel {
+  background-color: #20161f;
+  color: #497174;
+}
+
+/* Winter Theme */
+.winter .str-chat,
+.winter .str-chat__channel {
+  background-color: #ffffff;
+  color: #0284c7;
+}
+
+/* Dim Theme */
+.dim .str-chat,
+.dim .str-chat__channel {
+  background-color: #1c1c27;
+  color: #10b981;
+}
+
+/* Nord Theme */
+.nord .str-chat,
+.nord .str-chat__channel {
+  background-color: #eceff4;
+  color: #5e81ac;
+}
+
+/* Sunset Theme */
+.sunset .str-chat,
+.sunset .str-chat__channel {
+  background-color: #1e293b;
+  color: #ec4899;
+}

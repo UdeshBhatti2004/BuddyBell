@@ -1,0 +1,90 @@
+/* chatThemes.css */
+
+/* ------------------------
+✅ Chat Page Theme Variables
+------------------------ */
+
+.light {
+  --chat-bg: #ffffff;
+  --chat-text: #333333;
+  --chat-header: #f5f5f5;
+}
+
+.dark {
+  --chat-bg: #1f2937;
+  --chat-text: #ffffff;
+  --chat-header: #111111;
+}
+
+.cupcake {
+  --chat-bg: #f5f5f4;
+  --chat-text: #291334;
+  --chat-header: #ef9fbc;
+}
+
+.forest {
+  --chat-bg: #1f1d1d;
+  --chat-text: #e2e8f0;
+  --chat-header: #3ebc96;
+}
+
+.bumblebee {
+  --chat-bg: #ffffff;
+  --chat-text: #1c1917;
+  --chat-header: #f8e36f;
+}
+
+.emerald {
+  --chat-bg: #ffffff;
+  --chat-text: #1e3a8a;
+  --chat-header: #66cc8a;
+}
+
+.corporate {
+  --chat-bg: #ffffff;
+  --chat-text: #1d232a;
+  --chat-header: #4b6bfb;
+}
+
+.synthwave {
+  --chat-bg: #2d1b69;
+  --chat-text: #f8f8f2;
+  --chat-header: #e779c1;
+}
+
+.retro {
+  --chat-bg: #e4d8b4;
+  --chat-text: #282425;
+  --chat-header: #ea6962;
+}
+
+.cyberpunk {
+  --chat-bg: #ffee00;
+  --chat-text: #1a103d;
+  --chat-header: #ff7598;
+}
+
+/* Apply theme variables to Stream Chat components */
+.str-chat__channel {
+  background-color: var(--chat-bg);
+  color: var(--chat-text);
+}
+
+.str-chat__channel-header {
+  background-color: var(--chat-header);
+}
+
+.str-chat__list {
+  background-color: var(--chat-bg);
+  color: var(--chat-text);
+}
+
+.str-chat__message-text {
+  color: var(--chat-text);
+}
+
+.str-chat__input-flat,
+.str-chat__input {
+  background-color: var(--chat-bg);
+  color: var(--chat-text);
+}

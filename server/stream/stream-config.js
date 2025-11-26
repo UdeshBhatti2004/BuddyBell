@@ -5,6 +5,9 @@ dotenv.config();
 const apiKey = process.env.STREAM_API_KEY;
 const secretKey = process.env.STREAM_API_SECRET;
 
+console.log("STREAM_API_KEY:", process.env.STREAM_API_KEY);
+console.log("STREAM_API_SECRET exists:", !!process.env.STREAM_API_SECRET);
+
 const streamClient = StreamChat.getInstance(apiKey, secretKey);
 
 export const upsertUser = async ({ id, name, image }) => {
@@ -26,3 +29,4 @@ export const generateStreamToken = async (id) => {
     console.error("Error generating steam token", error);
   }
 };
+

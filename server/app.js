@@ -20,15 +20,9 @@ const dirname = path.resolve()
 const PORT = process.env.PORT
 
 // ✅ Replace this with your local IP address (example)
+// Allow only your deployed frontend origin
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "http://192.168.37.176:5173",
-     "http://10.199.144.176:5173",
-     "http://10.199.144.1:5173",
-     "http://10.199.144.1:5173/"
-    
-  ],
+  origin: "https://buddybell.onrender.com",
   credentials: true,
 }));
 

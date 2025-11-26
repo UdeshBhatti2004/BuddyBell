@@ -1,21 +1,12 @@
-// import axios from "axios"
-
-
-// export const axiosInstance = axios.create({
-//   baseURL: import.meta.env.VITE_API_URL,
-//   withCredentials: true
-// });
-
-
 import axios from "axios";
 
+// Use same-origin in production; keep localhost for local dev.
 const getBaseURL = () => {
   const host = window.location.hostname;
   if (host === "localhost" || host === "127.0.0.1") {
     return "http://localhost:8080";
   } else {
-      return "http://10.199.144.1:5173"; // Replace with your LAN IP 
-      // ""
+    return ""; // same origin in production (https://buddybell.onrender.com)
   }
 };
 
@@ -24,14 +15,10 @@ export const axiosInstance = axios.create({
   withCredentials: true
 });
 
-
-
 export const getDynamicThemes = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/themes");
-    if (response.data?.result) {
-      return response.data.result;  // returns [[r,g,b],[r,g,b],...]
-    }
+    const response = await axiosInstance.get("/api/themes");
+    if (response.data?.result) return response.data.result;
     return null;
   } catch (err) {
     console.error("Failed to fetch dynamic themes:", err);

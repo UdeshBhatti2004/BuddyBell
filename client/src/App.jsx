@@ -18,6 +18,10 @@ import FriendsPage from "./pages/FriendsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+
+
+console.log("Frontend Stream Key:", import.meta.env.VITE_STREAM_API_KEY);
+
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },

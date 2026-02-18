@@ -19,7 +19,7 @@ export const protectedRoute = async (req, res, next) => {
 
     req.user = user;
 
-    next(); // Continue to next middleware or controller
+    next();
   } catch (error) {
     console.error("Protected Route Error:", error.message);
     return res.status(401).json({ message: "Invalid or expired token." });

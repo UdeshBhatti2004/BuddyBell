@@ -233,7 +233,7 @@ export async function removeFriend(req, res) {
       $pull: { friends: currentUserId },
     });
 
-    // ❌ Remove any existing FriendRequest between these two users (both directions)
+    //  Remove any existing FriendRequest between these two users (both directions)
     await FriendRequest.deleteMany({
       $or: [
         { sender: currentUserId, recipient: friendId },
